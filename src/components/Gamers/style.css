@@ -1,0 +1,50 @@
+.GamerWrapper{
+    width: 45%;
+    background-image: url(../../assets/images/bg_image.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+} 
+
+.GamerContainer{
+    width: 100%;
+    height: 100%;
+    padding:13%;
+    background-color:   #1762ccd3;
+    padding-bottom: 20rem;
+    padding-top:4rem;
+}
+
+.GamerContainerImg{
+    padding-bottom: 12rem;
+}
+
+.GamerDescriptionWrapper{
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: column;
+    gap: 0.5rem;
+    color: #fefefe;
+}
+
+.GamerDescription{
+    line-height: 2.3rem;
+    font-size: 1.3rem;
+}
+
+.GamerPerson{
+    width: 95%;
+    height: 12rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+.GamerPersonName{
+    color:#fefefe;
+    font-size: 1.5rem;
+}
+.GamerPersonImg{
+    width: 2rem;
+    height: 2rem;
+    align-self: flex-end;
+}

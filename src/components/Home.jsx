@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-import HomePage from '../pages/HomePage/HomePage';
+import RegisterPage from '../pages/RegisterPage/RegisterPage';
 
 class Home extends Component {
     render() {
         return (
             <>
-                <HomePage/>
+                <RegisterPage/>
             </>
         );
     }
