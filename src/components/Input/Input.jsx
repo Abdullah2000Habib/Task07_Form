@@ -7,7 +7,7 @@ class Input extends Component {
             <>
                 <div className='inputWrapper'>
                     <label className='inputLabel' htmlFor={id}>{isRequired?label+'*':label}</label>
-                    <input className='input' required={isRequired}  type={type} placeholder={placeholder} value={value} onChange={(e)=>handleChange(e)}/>
+                    <input className='input' required={isRequired} id={id}  type={type} placeholder={placeholder} onChange={(e)=>handleChange(e)} value={value} />
                 </div>
             </>
         );
