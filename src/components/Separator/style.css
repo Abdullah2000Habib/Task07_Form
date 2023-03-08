@@ -1,0 +1,18 @@
+.separatorWrapper{
+    width: 70%;
+    height: 3.5px;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+.separatorTitle{
+    position: absolute;
+    background-color: white;
+    padding: 1rem;
+    color: #bababa;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 1.3rem;
+}
+

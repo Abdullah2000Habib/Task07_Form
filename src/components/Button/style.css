@@ -1,0 +1,17 @@
+.btn{
+    width: 70%;
+    padding: 1.3rem;
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    background-color: #1565d8;
+    color: #fefefe;
+}
+
+.btn.white {
+    background-color:#f7f1f1 ;
+    color: black;
+    box-shadow: 5px 5px 5px 0 #ccc;
+}

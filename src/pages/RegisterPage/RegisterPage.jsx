@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Gamers from '../../components/Gamers/Gamers';
-import Input from '../../components/Input/Input';
+import Register from '../../components/Register/Register';
 import "./style.css";
 class RegisterPage extends Component {
     handleChange =(e)=>{
@@ -9,9 +9,9 @@ class RegisterPage extends Component {
     render() {
         return (
             <>
-                <div>
+                <div className='registerPageWrapper'>
                     <Gamers/>
-                    <Input handleChange={this.handleChange}   type='email' isRequired={true} placeholder="Enter your Email" id="email" label="Email" />
+                    <Register/>
                 </div>
             </>
         );
