@@ -8,14 +8,14 @@ const defaults = {
     email:'',
     password:'',
     repeatPassword:'',
-    check:true,
+    check:false,
 }
 class Register extends Component {
     state={
         email:'',
         password:'',
         repeatPassword:'',
-        check:true,
+        check:false,
     }
     handleChange = (e)=>{
         console.log(this.state)
