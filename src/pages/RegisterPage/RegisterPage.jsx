@@ -12,7 +12,6 @@ class RegisterPage extends Component {
                     <Register/>
                     
                 </div>
-                <PasswordStrength title='very Strong' degree='four'/>
             </>
         );
     }
