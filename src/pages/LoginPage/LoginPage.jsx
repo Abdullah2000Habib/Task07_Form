@@ -10,6 +10,7 @@ class LoginPage extends Component {
                     <GamersLogin/>
                     <Login/>
                 </div>
+                
             </>
         );
     }

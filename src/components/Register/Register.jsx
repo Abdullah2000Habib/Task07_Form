@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
+import PasswordStrength from '../PasswordStrength/PasswordStrength';
 import Separator from '../Separator/Separator';
 import "./style.css";
 
@@ -9,6 +10,14 @@ const defaults = {
     password:'',
     repeatPassword:'',
     check:false,
+    degree:'',
+    title:'',
+}
+const degrees = {
+    degOne:['one','Week'],
+    degTwo:['two','Medium'],
+    degThree:['three','Strong'],
+    degFour:['four','Very Strong'],
 }
 class Register extends Component {
     state={
@@ -16,13 +25,45 @@ class Register extends Component {
         password:'',
         repeatPassword:'',
         check:false,
+        degree:'',
+        title:'',
     }
     handleChange = (e)=>{
-        console.log(this.state)
+        const medium1=  /^(?=.*[0-9])(?=.*[A-Z])(?!.*[a-z])[A-Za-z0-9]+$/;
+        const medium2 =/^(?=.*[0-9])(?=.*\W)(?!.*[a-z])[\w\W]+$/;
+        const strong = /^(?=.*[A-Z])(?=.*\W)(?!.*[a-z]).*$/;
+        const veryStrong =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/;;
         const {id ,value,checked}=e.target;
         this.setState((prev)=>{
             return id === 'check'? {...prev ,[id]:checked} :{...prev ,[id]:value}
-    })}
+        
+    }
+    )
+        this.setState((prev)=>{
+            if(prev.password.length === 0){
+                return {...prev,degree:'',title:''}
+            }
+            if(prev.password.length <= 9){
+                return {...prev,degree:degrees.degOne[0],title:degrees.degOne[1]}
+            }else{
+                if(veryStrong.test(prev.password) ){
+                    return{...prev,degree:degrees.degFour[0],title:degrees.degFour[1]}
+                }
+                if(strong.test(prev.password) ){
+                    return{...prev,degree:degrees.degThree[0],title:degrees.degThree[1]}
+                }
+                if(medium1.test(prev.password) || medium2.test(prev.password)){
+                    console.log(prev.password)
+                    return {...prev,degree:degrees.degTwo[0],title:degrees.degTwo[1]}
+                }else{
+                    return {...prev,degree:'five',title:'for strong password please enter EX 123456789Ac#'}
+                }
+            }
+        })
+    
+
+
+}
     handleSubmit =(e)=>{
         e.preventDefault();
         this.setState((prev)=>{
@@ -43,6 +84,7 @@ class Register extends Component {
                         <div className='registerInputs'>
                             <Input placeholder='Enter email address' type='email' label='Email Address' id='email' handleChange={this.handleChange} value={this.state.email}   isRequired={true}/>
                             <Input placeholder='password' type='password' label='Create password' id='password'  handleChange={this.handleChange} value={this.state.password} isRequired={true}/>
+                            <PasswordStrength title={this.state.title} degree={this.state.degree}/>
                             <Input placeholder='Repeat password' type='password' label='Repeat password' id='repeatPassword'  handleChange={this.handleChange} value={this.state.repeatPassword} isRequired={true}/>
                         </div>
                         <div className='registerAgree'>
