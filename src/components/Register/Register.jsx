@@ -105,7 +105,7 @@ class Register extends Component {
                         <div className='registerAgree'>
                             <input onChange={(e)=>{this.handleChange(e)}} type='checkbox' id='check' required defaultChecked={this.state.check}/>
                             <label className='checkLabel' htmlFor='checkbox'>I agree to terms & conditions</label>
-                        </div>
+                        </div> 
                         <div className='submitBtn'>
                             <Button type='submit' title='Register Account' toggle={false}/>
                         </div>
