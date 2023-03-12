@@ -41,40 +41,50 @@ class Register extends Component {
         title:'',
     }
     handleChange = (e)=>{
-        const medium1=  /^(?=.*[0-9])(?=.*[A-Z])(?!.*[a-z])[A-Za-z0-9]+$/;
-        const medium2 =/^(?=.*[0-9])(?=.*\W)(?!.*[a-z])[\w\W]+$/;
-        const strong = /^(?=.*[A-Z])(?=.*\W)(?!.*[a-z]).*$/;
-        const veryStrong =/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=])[A-Za-z\d@#$%^&+=]+$/;;
+        
         const {id ,value,checked}=e.target;
-        this.setState((prev)=>{
+                this.setState((prev)=>{
             return id === 'check'? {...prev ,[id]:checked} :{...prev ,[id]:value}
+    })     
+    
+    if(id ==='password'){
+
+        const strengthChecks = {
+            length: 0,
+            hasUpperCase: false,
+            hasLowerCase: false,
+            hasDigit: false,
+            hasSpecialChar: false,
+        };
+        strengthChecks.length = value.length<=9?true:false;
+        strengthChecks.hasUpperCase = /[A-Z]+/.test(value);
+        strengthChecks.hasLowerCase = /[a-z]+/.test(value);
+        strengthChecks.hasDigit = /[0-9]+/.test(value);
+        strengthChecks.hasSpecialChar = /[^A-Za-z0-9]+/.test(value);
+        
+        if(strengthChecks.hasDigit && !strengthChecks.length && strengthChecks.hasUpperCase && strengthChecks.hasLowerCase && strengthChecks.hasSpecialChar){
+        this.setState((prev)=>{
+            return {...prev,degree:degrees.degFour[0],title:degrees.degFour[1]}
+        })
+        }else if(strengthChecks.hasDigit && !strengthChecks.length && strengthChecks.hasUpperCase && !strengthChecks.hasLowerCase && strengthChecks.hasSpecialChar){
+        this.setState((prev)=>{
+            return {...prev,degree:degrees.degThree[0],title:degrees.degThree[1]}
+        })
+        }else if(strengthChecks.hasDigit && !strengthChecks.length && (strengthChecks.hasUpperCase || strengthChecks.hasSpecialChar ) && !strengthChecks.hasLowerCase){
+        this.setState((prev)=>{
+            return {...prev,degree:degrees.degTwo[0],title:degrees.degTwo[1]}
+        })
+        }else if(strengthChecks.hasDigit && strengthChecks.length && !strengthChecks.hasUpperCase && !strengthChecks.hasLowerCase && !strengthChecks.hasSpecialChar){
+            this.setState((prev)=>{
+            return {...prev,degree:degrees.degOne[0],title:degrees.degOne[1]}
+        })
+        }else{
+        this.setState((prev)=>{
+            return {...prev,degree:'five',title:'If you need very strong password Enter EX 123456789A#z'}
+        })
+        }
         
     }
-    )
-        this.setState((prev)=>{
-            if(prev.password.length === 0){
-                return {...prev,degree:'',title:''}
-            }
-            if(prev.password.length <= 9){
-                return {...prev,degree:degrees.degOne[0],title:degrees.degOne[1]}
-            }else{
-                if(veryStrong.test(prev.password) ){
-                    return{...prev,degree:degrees.degFour[0],title:degrees.degFour[1]}
-                }
-                if(strong.test(prev.password) ){
-                    return{...prev,degree:degrees.degThree[0],title:degrees.degThree[1]}
-                }
-                if(medium1.test(prev.password) || medium2.test(prev.password)){
-                    console.log(prev.password)
-                    return {...prev,degree:degrees.degTwo[0],title:degrees.degTwo[1]}
-                }else{
-                    return {...prev,degree:'five',title:'for strong password please enter EX 123456789Ac#'}
-                }
-            }
-        })
-    
-
-
 }
     handleSubmit =(e)=>{
         e.preventDefault();
