@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import * as yup from 'yup';
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
@@ -6,6 +7,7 @@ import Separator from '../Separator/Separator';
 import "./style.css";
 
 const defaults = {
+    name:'',
     email:'',
     password:'',
     repeatPassword:'',
@@ -20,7 +22,17 @@ const degrees = {
     degFour:['four','Very Strong'],
 }
 class Register extends Component {
+
+    schema  = yup.object().shape({
+        name:yup.string().matches(/^[a-z]+$/).min(6).max(16).required(),
+        email:yup.string().email().required(),
+        password:yup.string().min(8).matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/).required(),
+        repeatPassword:yup.string().oneOf([yup.ref('password'),null]),
+        check:yup.boolean().oneOf([true], 'Field must be checked'),
+    });
+
     state={
+        name:'',
         email:'',
         password:'',
         repeatPassword:'',
@@ -66,9 +78,11 @@ class Register extends Component {
 }
     handleSubmit =(e)=>{
         e.preventDefault();
-        this.setState((prev)=>{
-            return {...prev,...defaults}
-        })
+        this.schema.validate({name:this.state.name,email:this.state.email,password:this.state.password,repeatPassword:this.state.repeatPassword,check:this.state.check},{abortEarly:false}).then(()=>{
+            this.setState((prev)=>{
+                return {...prev,...defaults}
+            })
+        }).catch((error)=>console.log(error.errors))
     }
     render() {
         return (
@@ -82,7 +96,8 @@ class Register extends Component {
                     <form onSubmit={this.handleSubmit} className='registerForm'>
                         
                         <div className='registerInputs'>
-                            <Input placeholder='Enter email address' type='email' label='Email Address' id='email' handleChange={this.handleChange} value={this.state.email}   isRequired={true}/>
+                            <Input placeholder='Enter Your Name' type='text' label='Name' id='name'  handleChange={this.handleChange} value={this.state.name} isRequired={true}/>
+                            <Input placeholder='Enter email address' type='text' label='Email Address' id='email' handleChange={this.handleChange} value={this.state.email}   isRequired={true}/>
                             <Input placeholder='password' type='password' label='Create password' id='password'  handleChange={this.handleChange} value={this.state.password} isRequired={true}/>
                             <PasswordStrength title={this.state.title} degree={this.state.degree}/>
                             <Input placeholder='Repeat password' type='password' label='Repeat password' id='repeatPassword'  handleChange={this.handleChange} value={this.state.repeatPassword} isRequired={true}/>
