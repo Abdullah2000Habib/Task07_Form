@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
-import RegisterPage from '../pages/RegisterPage/RegisterPage';
+import Routes from '../routes';
+
+
+
+
 
 class Home extends Component {
     render() {
         return (
             <>
-                <RegisterPage/>
-                {/* <LoginPage/> */}
+                <Routes/>
             </>
         );
     }

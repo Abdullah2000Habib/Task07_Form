@@ -4,6 +4,27 @@
     padding-top: 7%;
 }
 
+.registerBack {
+    margin-bottom: 1rem;
+}
+
+.registerBackLink {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    transition: all 0.3s ease-in-out;
+}
+
+.registerBackTitle {
+    font-size: 1.2rem;
+    color: #8692ba
+}
+
+.registerBackLink:hover .registerBackTitle {
+    color: darkblue;
+}
+
 .registerDetails {
     display: flex;
     flex-direction: column;

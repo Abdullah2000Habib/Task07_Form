@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import * as yup from 'yup';
+import backImg from "../../assets/images/arrow_back_icon.png";
 import Button from '../Button/Button';
 import Input from '../Input/Input';
 import PasswordStrength from '../PasswordStrength/PasswordStrength';
@@ -98,6 +100,12 @@ class Register extends Component {
         return (
             <> 
                 <div className='registerWrapper'>
+                    <div className='registerBack'>
+                        <Link to='/login' className='registerBackLink'>
+                            <img className='registerBackIMg' src={backImg} alt=''/>
+                            <span className='registerBackTitle'>Back</span>
+                        </Link>
+                    </div>
                     <div className='registerDetails'>
                         <h2 className='registerTitle'>Register Individual Account!</h2>
                         <span className='registerDescription'>For the purpose of gamers     regulation, your details are required.</span>
@@ -123,7 +131,9 @@ class Register extends Component {
                     </form>
                     <Separator toggle={false}/>
                     <div className='loginBtn'>
-                        <Button type='button' title='login' toggle={true}/>
+                        <Link to='/login'>
+                            <Button type='button' title='login' toggle={true}/>
+                        </Link>
                     </div>
                 </div>
             </>

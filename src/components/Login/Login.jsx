@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import github from "../../assets/images/github.png";
 import google from "../../assets/images/google.png";
 import linkedin from "../../assets/images/linkedin.png";
@@ -54,7 +55,7 @@ class Login extends Component {
                     </form>
                     <div className='loginAgree'>
                         <label className='checkLabel' htmlFor='checkbox'>Dont have an account?</label>
-                        <a href='/#'>Register</a>
+                        <Link className='loginAgreeLink' to='/register'>Register</Link>
                     </div>
                 </div>
             </>
