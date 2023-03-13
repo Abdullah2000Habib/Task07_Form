@@ -1,5 +1,5 @@
 # Getting Started with Create React App
-# https://bucolic-gelato-aa338e.netlify.app/
+# https://glittering-bavarois-d8d04a.netlify.app/
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
